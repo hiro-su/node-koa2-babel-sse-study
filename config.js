@@ -1,8 +1,13 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-const path      = require('path'),
-      configDir = path.join(__dirname, 'config'),
-      router    = require(`${configDir}/routes`),
-      settings  = require(`${configDir}/settings/${process.env.NODE_ENV}.json`);
+import yaml from 'js-yaml';
+import fs from 'fs';
+import router from './config/routes';
 
-export { router, settings }
+const settings = yaml.safeLoad(fs.readFileSync(detectSettings(), 'utf8'));
+
+function detectSettings() {
+  return `./config/settings/${process.env.NODE_ENV}.yml`;
+}
+
+export { router, settings };

@@ -5,7 +5,7 @@ import views from 'koa-views';
 import serve from 'koa-static';
 import logger from 'koa-morgan';
 import moment from 'moment';
-import { router, settings } from './config';
+import { router } from './config';
 
 const app = new Koa();
 
@@ -20,7 +20,7 @@ app.use(logger('combined'));
 app.use(async (ctx, next) => {
   try {
     await next();
-  } catch(err) {
+  } catch (err) {
     console.error(err);
     ctx.body = { message: err.message };
     ctx.status = err.status || 500;
@@ -28,11 +28,13 @@ app.use(async (ctx, next) => {
 });
 
 // render
-app.use(views(__dirname + '/app/views', { extension: 'jade' }));
-app.use(serve(__dirname + '/app/assets'));
+app
+  .use(views(__dirname + '/app/views', { extension: 'jade' }))
+  .use(serve(__dirname + '/app/assets'));
 
 // routing
-app.use(router.routes())
-   .use(router.allowedMethods());
+app
+  .use(router.routes())
+  .use(router.allowedMethods());
 
 module.exports = app;

@@ -4,7 +4,7 @@ import AppCtrl from './appCtrl';
 import UserStream from '../model/userStream';
 import SSEClient from './concerns/sseClient';
 import eventStream from './concerns/eventStream';
-import compose from 'koa-compose'
+import compose from 'koa-compose';
 
 export default class UsersCtrl extends AppCtrl {
   index() {
@@ -22,12 +22,12 @@ export default class UsersCtrl extends AppCtrl {
   stream() {
     return compose([
       eventStream(),
-      async (ctx, next) => {
+      async (ctx) => {
         const payload = {
           event: 'user',
           retry: 15000,
           id: ctx.params.id,
-        }
+        };
 
         const client = ctx.body = new SSEClient();
 
