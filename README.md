@@ -9,3 +9,5 @@ The directory structure like the rails.
  $ npm install
  $ DEBUG=node-koa2-babel-sse-study:* npm start
 ```
+
+Using a browser, go to [http://localhost:3000/users/1](http://localhost:3000/users/1)
