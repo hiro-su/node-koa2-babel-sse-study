@@ -23,7 +23,7 @@ export default class UsersCtrl extends AppCtrl {
     return compose([
       eventStream(),
       async (ctx) => {
-        const payload = {
+        const params = {
           event: 'user',
           retry: 15000,
           id: ctx.params.id,
@@ -31,7 +31,7 @@ export default class UsersCtrl extends AppCtrl {
 
         const client = ctx.body = new SSEClient();
 
-        const stream = new UserStream(payload);
+        const stream = new UserStream(params);
         stream.pipe(client);
 
         const socket = ctx.socket;

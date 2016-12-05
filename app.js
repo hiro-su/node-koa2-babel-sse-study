@@ -14,7 +14,7 @@ logger.token('date', format => {
   const clf = 'DD/MMM/YYYY:HH:mm:ss ZZ';
   return moment(format._startTime).format(clf);
 });
-app.use(logger('combined'));
+app.use(logger('combined', { immediate: true }));
 
 // error handler
 app.use(async (ctx, next) => {

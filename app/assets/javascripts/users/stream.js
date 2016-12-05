@@ -5,4 +5,5 @@ function subscribe(es) {
   });
 }
 
-subscribe(new EventSource('/users/1/stream'));
+var id = location.pathname.split('/')[2];
+subscribe(new EventSource('/users/' + id + '/stream'));
