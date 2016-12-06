@@ -25,11 +25,12 @@ export default class UsersCtrl extends AppCtrl {
       async (ctx) => {
         const params = {
           event: 'user',
-          retry: 15000,
+          retry: 5000,
           id: ctx.params.id,
         };
 
-        const client = ctx.body = new SSEClient();
+        const lastEventId = ctx.headers['last-event-id'];
+        const client = ctx.body = new SSEClient(lastEventId);
 
         const stream = new UserStream(params);
         stream.pipe(client);

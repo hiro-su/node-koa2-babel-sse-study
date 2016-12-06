@@ -9,7 +9,6 @@ export default class UserStream extends Readable {
     super(options);
 
     this.params = params;
-    this.count = 0;
   }
 
   _read() {
@@ -17,7 +16,6 @@ export default class UserStream extends Readable {
       this.push(
         {
           value: Math.floor(this.params.id * Math.random() * 10),
-          count: this.count++,
           params: this.params
         }
       );
