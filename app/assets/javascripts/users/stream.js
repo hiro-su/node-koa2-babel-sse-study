@@ -4,8 +4,11 @@ function subscribe(es) {
   });
 
   es.addEventListener('user', function (e) {
-    var data = JSON.parse(e.data);
-    document.getElementById('data').innerHTML = data;
+    var lastEvent = e.lastEventId.split('/');
+    document.getElementById('id').innerHTML = lastEvent[0];
+    document.getElementById('count').innerHTML = lastEvent[1];
+    document.getElementById('data').innerHTML = e.data;
+    document.getElementById('close').href = '/stream/' + lastEvent[0] + '/close';
   });
 
   es.addEventListener('error', function (e) {
@@ -19,4 +22,4 @@ function subscribe(es) {
 }
 
 var id = location.pathname.split('/')[2];
-subscribe(new EventSource('/users/' + id + '/stream'));
+subscribe(new EventSource('/stream/' + id));

@@ -15,14 +15,14 @@ export default class SSEClient extends Transform {
       this.count = parseInt(lastEvent[1]);
     } else {
       this.id = uuid();
-      this.count = 1;
+      this.count = 0;
     }
   }
 
   _transform(data, enc, cb) {
     this.push(`event: ${data.params.event}\n`);
-    this.push(`retry: ${data.params.retry}\n`);
-    this.push(`id: ${this.id}/${this.count++}\n`);
+    this.push(`id: ${this.id}/${++this.count}\n`);
+    if (data.params.retry) this.push(`retry: ${data.params.retry}\n`);
     this.push(`data: ${data.value}\n\n`);
 
     cb();

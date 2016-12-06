@@ -10,6 +10,7 @@ router
   .get('/', users.index())
   .get('/users', users.index())
   .get('/users/:id', users.show())
-  .get('/users/:id/stream', users.stream());
+  .get('/stream/:id', users.stream())
+  .get('/stream/:id/close', users.close());
 
 module.exports = router;

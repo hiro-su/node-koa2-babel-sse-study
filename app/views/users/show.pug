@@ -4,8 +4,19 @@ html
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     script(src="https://cdnjs.cloudflare.com/ajax/libs/event-source-polyfill/0.0.7/eventsource.js")
   body
-    p#event
-    p#id
-    p#data
+    ul
+      li
+        | id:&nbsp;
+        span#id
+      li
+        | count:&nbsp;
+        span#count
+      li
+        | data:&nbsp;
+        span#data
 
-    script(src="/javascripts/users/stream.js")
+      br
+      a(id="close" target="_blank")
+        button CLOSE
+
+    script(src="/javascripts/users/stream.js" id="close")
