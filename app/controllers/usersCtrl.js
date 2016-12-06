@@ -12,12 +12,13 @@ export default class UsersCtrl extends AppCtrl {
 
   index() {
     return async () => {
-      super.raise('not implemented', 404);
+      this.raise('not implemented', 404);
     };
   }
 
   show() {
     return async (ctx) => {
+      ctx.state = this.assets;
       await ctx.render('users/show');
     };
   }

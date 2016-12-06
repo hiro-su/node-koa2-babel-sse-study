@@ -30,7 +30,7 @@ app.use(async (ctx, next) => {
 // render
 app
   .use(views(__dirname + '/app/views', { extension: 'pug' }))
-  .use(serve(__dirname + '/app/assets'));
+  .use(serve(__dirname + '/public'));
 
 // routing
 app

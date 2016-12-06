@@ -7,6 +7,7 @@ The directory structure like the rails.
 
 ```bash
  $ npm install
+ $ NODE_ENV=production npm run build
  $ DEBUG=node-koa2-babel-sse-study:* npm start
 ```
 

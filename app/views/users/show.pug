@@ -1,22 +1,18 @@
-html
-  head
-    title test
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/event-source-polyfill/0.0.7/eventsource.js")
-  body
-    ul
-      li
-        | id:&nbsp;
-        span#id
-      li
-        | count:&nbsp;
-        span#count
-      li
-        | data:&nbsp;
-        span#data
+extends ../layouts/application
 
-      br
-      a(id="close" target="_blank")
-        button CLOSE
+block content
+  ul
+    li
+      | id:&nbsp;
+      span#id
+    li
+      | count:&nbsp;
+      span#count
+    li
+      | data:&nbsp;
+      span#data
 
-    script(src="/javascripts/users/stream.js" id="close")
+    br
+    a(id="close" target="_blank")
+      button CLOSE
+
